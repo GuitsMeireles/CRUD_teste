@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/subscriberFragment"
         android:name="com.crud.ui.subscriber.SubscriberFragment"
-        android:label="Subscriber"
+        android:label="Usuário"
         tools:layout="@layout/fragment_subscriber" />
 </navigation>
