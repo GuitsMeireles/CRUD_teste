@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.crud.dao.SubscriberDAO
-import com.crud.entity.SubscriberEntity
+import com.crud.data.db.dao.SubscriberDAO
+import com.crud.data.db.entity.SubscriberEntity
 
 @Database(entities = [SubscriberEntity::class], version = 1)
 abstract class AppDataBase : RoomDatabase() {

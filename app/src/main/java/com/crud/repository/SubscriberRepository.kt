@@ -1,7 +1,7 @@
 package com.crud.repository
 
 import androidx.lifecycle.LiveData
-import com.crud.entity.SubscriberEntity
+import com.crud.data.db.entity.SubscriberEntity
 
 interface SubscriberRepository {
 

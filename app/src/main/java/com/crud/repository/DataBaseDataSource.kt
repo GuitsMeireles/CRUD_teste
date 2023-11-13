@@ -1,8 +1,8 @@
 package com.crud.repository
 
 import androidx.lifecycle.LiveData
-import com.crud.dao.SubscriberDAO
-import com.crud.entity.SubscriberEntity
+import com.crud.data.db.dao.SubscriberDAO
+import com.crud.data.db.entity.SubscriberEntity
 
 class DataBaseDataSource(
     private val subscriberDAO: SubscriberDAO

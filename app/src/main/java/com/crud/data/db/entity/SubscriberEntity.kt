@@ -1,4 +1,4 @@
-package com.crud.entity
+package com.crud.data.db.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

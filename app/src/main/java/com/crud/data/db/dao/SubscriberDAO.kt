@@ -1,11 +1,11 @@
-package com.crud.dao
+package com.crud.data.db.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.crud.entity.SubscriberEntity
+import com.crud.data.db.entity.SubscriberEntity
 
 @Dao
 interface SubscriberDAO {
