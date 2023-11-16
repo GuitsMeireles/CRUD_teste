@@ -14,6 +14,7 @@ import com.crud.R
 import com.crud.data.db.AppDataBase
 import com.crud.data.db.dao.SubscriberDAO
 import com.crud.databinding.FragmentSubscriberListBinding
+import com.crud.extension.navigateWithAnimations
 import com.crud.repository.DataBaseDataSource
 import com.crud.repository.SubscriberRepository
 
@@ -63,7 +64,7 @@ class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
 
     private fun configureViewListeners() {
         binding.addSubscriber.setOnClickListener {
-            findNavController().navigate(R.id.subscriberFragment)
+            findNavController().navigateWithAnimations(R.id.subscriberFragment)
         }
     }
 }
