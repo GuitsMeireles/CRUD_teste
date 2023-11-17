@@ -9,12 +9,21 @@
         android:id="@+id/subscriberListFragment"
         android:name="com.crud.ui.subscriberlist.SubscriberListFragment"
         android:label="Subscriber List"
-        tools:layout="@layout/fragment_subscriber_list" />
+        tools:layout="@layout/fragment_subscriber_list" >
+        <action
+            android:id="@+id/action_subscriberListFragment_to_subscriberFragment"
+            app:destination="@id/subscriberFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/subscriberFragment"
         android:name="com.crud.ui.subscriber.SubscriberFragment"
         android:label="Usuário"
-        tools:layout="@layout/fragment_subscriber" />
+        tools:layout="@layout/fragment_subscriber" >
+        <argument
+            android:name="subscriber"
+            app:argType="com.crud.data.db.entity.SubscriberEntity"
+            app:nullable="true" />
+    </fragment>
 
 </navigation>
