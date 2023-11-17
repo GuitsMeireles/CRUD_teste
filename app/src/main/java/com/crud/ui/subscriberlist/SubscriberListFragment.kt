@@ -56,7 +56,7 @@ class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
                 onItemClick = { subscriber ->
                     val directions = SubscriberListFragmentDirections
                         .actionSubscriberListFragmentToSubscriberFragment(subscriber)
-                    findNavController().navigate(directions)
+                    findNavController().navigateWithAnimations(directions)
                 }
             }
 
@@ -75,7 +75,9 @@ class SubscriberListFragment : Fragment(R.layout.fragment_subscriber_list) {
 
     private fun configureViewListeners() {
         binding.addSubscriber.setOnClickListener {
-            findNavController().navigateWithAnimations(R.id.subscriberFragment)
+            findNavController().navigateWithAnimations(
+                R.id.action_subscriberListFragment_to_subscriberFragment
+            )
         }
     }
 }

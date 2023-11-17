@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.crud.R
 import com.crud.data.db.AppDataBase
 import com.crud.data.db.dao.SubscriberDAO
@@ -31,11 +32,21 @@ class SubscriberFragment : Fragment(R.layout.fragment_subscriber) {
         }
     }
 
+    private val args: SubscriberFragmentArgs by navArgs()
+
     private lateinit var binding: FragmentSubscriberBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentSubscriberBinding.bind(view)
+
+        args.subscriber?.let { subscriber ->
+            binding.buttonAdd.text = getString(R.string.subscriber_button_update)
+            binding.inputName.setText(subscriber.name)
+            binding.inputData.setText(subscriber.birth)
+            binding.inputCpf.setText(subscriber.cpf)
+            binding.inputCel.setText(subscriber.tel)
+        }
 
         observeEvents()
         setListeners()
@@ -48,6 +59,11 @@ class SubscriberFragment : Fragment(R.layout.fragment_subscriber) {
                     hideKeyboard()
                     requireView().requestFocus()
 
+                    findNavController().popBackStack()
+                }
+                is SubscriberViewModel.SubscriberState.Update -> {
+                    clearFields()
+                    hideKeyboard()
                     findNavController().popBackStack()
                 }
             }
@@ -79,7 +95,7 @@ class SubscriberFragment : Fragment(R.layout.fragment_subscriber) {
             val cpf = binding.inputCpf.text.toString()
             val tel = binding.inputCel.text.toString()
 
-            viewModel.addSubscriber(name, birth, cpf, tel)
+            viewModel.addOrUpdateSubscriber(name, birth, cpf, tel, args.subscriber?.id ?: 0)
         }
     }
 }

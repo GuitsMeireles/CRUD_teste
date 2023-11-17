@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">CRUD</string>
+    <string name="subscriber_button_update">Update</string>
     <string name="subscriber_insert_successfully">Subscriber was successfully inserted</string>
+    <string name="subscriber_update_successfully">Subscriber was successfully update</string>
     <string name="subscriber_error_to_insert">There was an error when inserting Subscriber</string>
 </resources>

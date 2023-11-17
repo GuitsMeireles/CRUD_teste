@@ -21,7 +21,27 @@ class SubscriberViewModel(
     val messageEvenData: LiveData<Int>
         get() = _messageEvenData
 
-    fun addSubscriber(name: String, birth: String, cpf: String, tel: String) =
+    fun addOrUpdateSubscriber(name: String, birth: String, cpf: String, tel: String, id: Long = 0) {
+        if (id > 0) {
+            updateSubscriber(id, name, birth, cpf, tel)
+        } else {
+            insertSubscriber(name, birth, cpf, tel)
+        }
+    }
+
+    private fun updateSubscriber(id: Long, name: String, birth: String, cpf: String, tel: String) = viewModelScope.launch {
+        try {
+            repository.updateSubscriber(id, name, birth, cpf, tel)
+
+            _subscriberStateEvenData.value = SubscriberState.Update
+            _messageEvenData.value = R.string.subscriber_update_successfully
+        } catch (ex: Exception) {
+            _messageEvenData.value = R.string.subscriber_error_to_insert
+            Log.e(TAG, ex.toString())
+        }
+    }
+
+    private fun insertSubscriber(name: String, birth: String, cpf: String, tel: String) =
         viewModelScope.launch {
             try {
                 val id = repository.insertSubscriber(name, birth, cpf, tel)
@@ -38,6 +58,7 @@ class SubscriberViewModel(
 
     sealed class SubscriberState {
         object Inserted : SubscriberState()
+        object Update : SubscriberState()
     }
 
     companion object {
