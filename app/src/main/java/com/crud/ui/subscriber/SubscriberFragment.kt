@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.crud.R
 import com.crud.data.db.AppDataBase
 import com.crud.data.db.dao.SubscriberDAO
@@ -45,6 +46,9 @@ class SubscriberFragment : Fragment(R.layout.fragment_subscriber) {
                 is SubscriberViewModel.SubscriberState.Inserted -> {
                     clearFields()
                     hideKeyboard()
+                    requireView().requestFocus()
+
+                    findNavController().popBackStack()
                 }
             }
         }

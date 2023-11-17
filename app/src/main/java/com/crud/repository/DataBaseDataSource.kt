@@ -1,6 +1,5 @@
 package com.crud.repository
 
-import androidx.lifecycle.LiveData
 import com.crud.data.db.dao.SubscriberDAO
 import com.crud.data.db.entity.SubscriberEntity
 
@@ -49,7 +48,7 @@ class DataBaseDataSource(
         subscriberDAO.deleteAll()
     }
 
-    override  fun getAllSubscriber(): LiveData<List<SubscriberEntity>> {
+    override suspend fun getAllSubscriber(): List<SubscriberEntity> {
         return subscriberDAO.getAll()
     }
 }
