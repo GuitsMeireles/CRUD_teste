@@ -29,17 +29,18 @@ class SubscriberViewModel(
         }
     }
 
-    private fun updateSubscriber(id: Long, name: String, birth: String, cpf: String, tel: String) = viewModelScope.launch {
-        try {
-            repository.updateSubscriber(id, name, birth, cpf, tel)
+    private fun updateSubscriber(id: Long, name: String, birth: String, cpf: String, tel: String) =
+        viewModelScope.launch {
+            try {
+                repository.updateSubscriber(id, name, birth, cpf, tel)
 
-            _subscriberStateEvenData.value = SubscriberState.Update
-            _messageEvenData.value = R.string.subscriber_update_successfully
-        } catch (ex: Exception) {
-            _messageEvenData.value = R.string.subscriber_error_to_insert
-            Log.e(TAG, ex.toString())
+                _subscriberStateEvenData.value = SubscriberState.Update
+                _messageEvenData.value = R.string.subscriber_update_successfully
+            } catch (ex: Exception) {
+                _messageEvenData.value = R.string.subscriber_error_to_update
+                Log.e(TAG, ex.toString())
+            }
         }
-    }
 
     private fun insertSubscriber(name: String, birth: String, cpf: String, tel: String) =
         viewModelScope.launch {
@@ -53,12 +54,25 @@ class SubscriberViewModel(
 
                 Log.e("", ex.toString())
             }
-
         }
+
+    fun removeSubscriber(id: Long) = viewModelScope.launch {
+        try {
+            if (id > 0) {
+                repository.deleteSubscriber(id)
+                _subscriberStateEvenData.value = SubscriberState.Deleted
+                _messageEvenData.value = R.string.subscriber_delete_successfully
+            }
+        } catch (ex: Exception) {
+            _messageEvenData.value = R.string.subscriber_error_to_delete
+            Log.e(TAG, ex.toString())
+        }
+    }
 
     sealed class SubscriberState {
         object Inserted : SubscriberState()
         object Update : SubscriberState()
+        object Deleted : SubscriberState()
     }
 
     companion object {
